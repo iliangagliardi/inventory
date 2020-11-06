@@ -3,9 +3,10 @@ Re-platforming Exercise
 Transform this spring-boot rest api application from being based on SQL Server to MongoDB.
 The peculiar aspect of this project is that it is using bi-temporal tables (https://docs.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-2017)
 
-## Install SQL Server 
+## Setup
+### Install SQL Server 
 
-### Docker 
+#### Docker 
 There is plenty of Docker images to download for SQL Server: https://hub.docker.com/_/microsoft-mssql-server 
 ```
 docker run -e ‘ACCEPT_EULA=Y’ 
@@ -13,10 +14,10 @@ docker run -e ‘ACCEPT_EULA=Y’
     -e ‘MSSQL_PID=Express’ 
     -p 1433:1433 -d mcr.microsoft.com/mssql/server:2017-latest-ubuntu
 ```
-### Windows
+#### Windows
 or install it to a Windows Server/10 box
 
-## Create the database
+### Create the database
 Create, under the default schema, a database named **inventory**.
 
 In *"src/resources"* there is the *"schema.sql"* script that will create the tables.
@@ -86,17 +87,30 @@ Two tables, Inventory and Purchases, are bi-temporal. Every operation that alter
 After invoking the rest service *setup inventory* and placing some orders with /order/place Order
 ![tables ](https://github.com/iliangagliardi/inventory/blob/master/src/main/resources/static/postmanscreen1.png?raw=true)
 
-the database should look like this
+the database should look like the image
 ![tables ](https://github.com/iliangagliardi/inventory/blob/master/src/main/resources/static/dbscreen2.png?raw=true)
 
 
 ## Launch the application
+
+Modify the application.properties, configuring the necessary parameters to database connection.
+
+```
+
+spring.datasource.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
+spring.datasource.url=jdbc:sqlserver://<your server>;databaseName=inventory
+spring.datasource.username=sa
+spring.datasource.password=<your password>
+
+```
+
+Here is the maven command to download dependencies, build and run the application.
 ```
 ./mvnw spring-boot:run
 ```
 
 ## Test it
-Under src/test/resources there is the Postman collection with all the rest api calls to:
+Under src/test/resources there is the Postman collection (to import in your Postman workspace) with all the rest api calls to:
  - setup the inventory
  - place an order
  - change the state of an order
