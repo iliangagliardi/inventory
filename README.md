@@ -12,6 +12,7 @@ Two tables, Inventory and Purchases, are bi-temporal.
 
 # Launch the application
 
+
 # Test it
 Under src/test/resources there is the Postman collection with all the rest api calls to:
  - setup the inventory
@@ -20,3 +21,4 @@ Under src/test/resources there is the Postman collection with all the rest api c
  - report and data query
  
 # Re-platform
+
