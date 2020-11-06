@@ -117,4 +117,4 @@ Under src/test/resources there is the Postman collection (to import in your Post
  - report and data query
  
 ## Re-platform
-
+Rewrite the application to use MongoDB and figure out how to manage the "history" of changing data, in order to query data point in time.
