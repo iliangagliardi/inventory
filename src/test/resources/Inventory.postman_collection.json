@@ -1,0 +1,300 @@
+{
+	"info": {
+		"_postman_id": "380e73e7-5fd3-42f0-a02f-21ec26e48c2d",
+		"name": "Inventory",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "orders",
+			"item": [
+				{
+					"name": "get order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/orders/get/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orders",
+								"get",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "place Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customer\": \"John Doe\",\n    \"date\": \"2020-11-05T10:30:00\",\n    \"items\": [\n        {\n            \"product\": {\n                \"id\": 2\n            },\n            \"quantity\": 1000\n        },\n        {\n            \"product\": {\n                \"id\": 4\n            },\n            \"quantity\": 1000\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/orders/place",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orders",
+								"place"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/orders/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orders",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put canceled",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/orders/cancel/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orders",
+								"cancel",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put shipped",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/orders/shipped/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orders",
+								"shipped",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put delivered",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/orders/delivered/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orders",
+								"delivered",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "reports",
+			"item": [
+				{
+					"name": "get inventory history for product",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product_id\" : 2,\n    \"from\" : \"2020-11-06T12:30:00\",\n    \"to\" : \"2020-11-06T15:50:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/report/inventory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"report",
+								"inventory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get purchases history for an order id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product_id\" : 2,\n    \"from\" : \"2020-11-06T12:30:00\",\n    \"to\" : \"2020-11-06T15:50:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/report/order/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"report",
+								"order",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "get all products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/orders/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"orders",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "setup Inventory",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n{\n    \"stock\":10000,\n    \"product\":{\n        \"name\":\"Product1\",\n        \"description\":\"Maecenas euismod ornare nibh, at viverra leo posuere eget. Ut sollicitudin augue dignissim, aliquam lectus ac, tempor orci. Maecenas quis libero mattis, ultricies lorem vitae, aliquam nisl. Nunc ut consectetur felis. Sed sed tortor vel diam pellentesque tempus non ac urna. Nullam cursus pretium posuere. Pellentesque convallis sagittis magna, vitae egestas elit euismod in. Integer vel bibendum erat. Sed tristique in justo in consectetur. Morbi est tortor, vehicula vitae ipsum nec, maximus feugiat justo. Mauris at neque dictum, egestas tellus id, faucibus turpis. Nulla nec mi lectus.\"\n    }\n}\n,{\n    \"stock\":10000,\n    \"product\":{\n        \"name\":\"Product2\",\n        \"description\":\"Suspendisse tempus enim sit amet dui blandit, in scelerisque ligula laoreet. Suspendisse id malesuada dolor. In vitae hendrerit ante. Donec at magna sit amet dolor lacinia facilisis at ut sapien. Nunc vehicula eros non felis hendrerit, ut vulputate nulla hendrerit. Proin sapien orci, pulvinar at bibendum imperdiet, efficitur vitae lorem. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; In accumsan maximus augue, faucibus aliquam dolor pretium semper. Etiam hendrerit non lacus eu sagittis. Donec sem nisl, laoreet laoreet erat in, congue egestas dui. Maecenas convallis eget felis ut semper. Maecenas congue diam sed tellus vulputate, non tempor sem hendrerit. Quisque finibus ipsum a erat tempor ultrices.\"\n    }\n}\n,{\n    \"stock\":10000,\n    \"product\":{\n        \"name\":\"Product3\",\n        \"description\":\"Nulla a dictum ligula. Etiam scelerisque imperdiet lorem, eleifend vulputate dui pharetra sit amet. Aliquam quis dignissim tortor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas scelerisque fermentum ipsum, sed tincidunt orci iaculis blandit. Phasellus pretium, nunc vel iaculis maximus, est dolor bibendum lorem, vitae vehicula enim felis sed mauris. Nullam eu ligula elit. Sed rutrum urna nibh, eu iaculis justo blandit ac.\"\n    }\n}\n,{\n    \"stock\":10000,\n    \"product\":{\n        \"name\":\"Product4\",\n        \"description\":\"Vestibulum molestie lacus vel lectus volutpat mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum sagittis iaculis sem, eget tristique eros sodales eu. Donec accumsan ex in ante molestie tincidunt. Vestibulum luctus nulla eu mauris rhoncus lacinia. Quisque id faucibus neque, volutpat consequat augue. Mauris aliquam nisl turpis, convallis elementum dui accumsan non.\"\n    }\n}\n,{\n    \"stock\":10000,\n    \"product\":{\n        \"name\":\"Product5\",\n        \"description\":\"Phasellus eu blandit felis. Aliquam rhoncus mi a tempor pretium. Suspendisse eu euismod ipsum. Vivamus blandit libero eget enim ultricies, in porttitor sapien pulvinar. Mauris sed sem non quam feugiat varius. Aliquam id lorem et tortor pretium semper vel eu lacus. Duis eu leo nec augue bibendum rutrum vel sit amet ligula. Sed velit purus, bibendum id purus ut, porttitor scelerisque quam. In lacinia augue eget tellus eleifend, nec fringilla ligula scelerisque. Aenean id lorem id tortor pellentesque mattis. In hac habitasse platea dictumst. Donec vel sem fringilla, auctor metus eget, condimentum erat. Fusce sed justo sed diam vehicula eleifend.\"\n    }\n}\n,{\n    \"stock\":10000,\n    \"product\":{\n        \"name\":\"Product6\",\n        \"description\":\"Curabitur ut volutpat tortor, at aliquet eros. Donec efficitur in massa id accumsan. Suspendisse molestie volutpat nulla, eget lobortis quam dictum non. Quisque placerat efficitur mollis. Donec tincidunt turpis risus, suscipit accumsan urna varius sed. Donec vitae pellentesque tellus, eget mollis ex. Donec quis lacinia turpis, ac mollis urna. Mauris posuere imperdiet tortor, a sagittis ligula malesuada vitae. Sed porttitor semper nisi, a luctus sem porttitor egestas. Aenean dapibus metus nunc, at feugiat lacus fringilla eu\"\n    }\n}\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/inventory/setup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"inventory",
+						"setup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get full inventory",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/inventory/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"inventory",
+						"all"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
