@@ -81,6 +81,15 @@ In *"src/resources"* there is the *"schema.sql"* script that will create the tab
 ```
 Two tables, Inventory and Purchases, are bi-temporal. Every operation that alters values or the entire row, will be recorded in a second historical table.
 
+![tables ](https://github.com/iliangagliardi/inventory/blob/master/src/main/resources/static/dbscreen1.png?raw=true)
+
+After invoking the rest service *setup inventory* and placing some orders with /order/place Order
+![tables ](https://github.com/iliangagliardi/inventory/blob/master/src/main/resources/static/postmanscreen1.png?raw=true)
+
+the database should look like this
+![tables ](https://github.com/iliangagliardi/inventory/blob/master/src/main/resources/static/dbscreen2.png?raw=true)
+
+
 ## Launch the application
 ```
 ./mvnw spring-boot:run
