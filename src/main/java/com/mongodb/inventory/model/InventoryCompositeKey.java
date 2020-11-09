@@ -13,5 +13,15 @@ public class InventoryCompositeKey implements Serializable {
 
     private Long id;
 
-    private Date endTime;
+    private String uid;
+
+    public InventoryCompositeKey() {
+    }
+
+    public InventoryCompositeKey(Long id, String uid) {
+        this.id = id;
+        this.uid = uid;
+    }
+
+
 }

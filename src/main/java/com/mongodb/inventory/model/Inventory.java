@@ -7,11 +7,16 @@
 package com.mongodb.inventory.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
+//https://hibernate.atlassian.net/browse/HHH-6044
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY )
+
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 @Entity
 @Table(name = "inventory")
 public class Inventory {
@@ -36,7 +41,6 @@ public class Inventory {
 
     // constructor and getters/setters
 
-
     public Inventory() {
     }
 
@@ -46,12 +50,6 @@ public class Inventory {
         this.product = product;
         this.startTime = startTime;
         this.endTime = endTime;
-    }
-
-    public Inventory(Long id, Long stock, Product product) {
-        this.id = id;
-        this.stock = stock;
-        this.product = product;
     }
 
     public Long getId() {
@@ -93,6 +91,7 @@ public class Inventory {
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
+
 
     @Override
     public String toString() {

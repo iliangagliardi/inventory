@@ -1,7 +1,7 @@
 # Inventory application
 Re-platforming Exercise
-Transform this spring-boot rest api application from being based on SQL Server to MongoDB.
-The peculiar aspect of this project is that it is using bi-temporal tables (https://docs.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-2017)
+Transform this spring-boot REST API application from a SQL Server based application to a MongoDB application, filling up what is actually missing.
+The peculiar aspect of this project is that it's using bi-temporal tables (https://docs.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-2017), which are not supported by MongoDB at the moment. But, there are at least a couple of way to achieve the very same result, with a huge amount of freedom given by MongoDB nature.
 
 ## Setup
 ### Install SQL Server 
@@ -26,8 +26,9 @@ Create, under the default schema, a database named **inventory**.
 In *"src/resources"* there is the *"schema.sql"* script that will create the tables.
 ```iso92-sql
 
+    
     create table inventory (
-       id int identity not null,
+        id int identity not null,
         stock numeric(19,0),
         product_id numeric(19,0),
         start_time datetime2(0) GENERATED ALWAYS AS ROW START NOT NULL,
@@ -44,7 +45,7 @@ In *"src/resources"* there is the *"schema.sql"* script that will create the tab
     )
 
     create table purchase (
-       id numeric(19,0) identity not null,
+        id numeric(19,0) identity not null,
         canceled bit default 0,
         customer varchar(255),
         date datetime,
@@ -57,30 +58,31 @@ In *"src/resources"* there is the *"schema.sql"* script that will create the tab
     ) with (SYSTEM_VERSIONING = ON (HISTORY_TABLE = [dbo].[purchase_history]));
 
     create table purchase_items (
-       id numeric(19,0) identity not null,
+        id numeric(19,0) identity not null,
         quantity numeric(19,0),
         product_id numeric(19,0),
         purchase_id numeric(19,0),
-        primary key (id)
+	    primary key (id)
     )
 
-    alter table products 
+    alter table products
        add constraint UK_name unique (name)
 
-    alter table inventory 
+    alter table inventory
        add constraint FKinventoryProducts
-       foreign key (product_id) 
+       foreign key (product_id)
        references products
 
-    alter table purchase_items 
+    alter table purchase_items
        add constraint FKpurchasedProduct
-       foreign key (product_id) 
+       foreign key (product_id)
        references products
 
-    alter table purchase_items 
+    alter table purchase_items
        add constraint FKpurchasedItems
-       foreign key (purchase_id) 
+       foreign key (purchase_id)
        references purchase
+
 
 ```
 Two tables, Inventory and Purchases, are bi-temporal. Every operation that alters values or the entire row, will be recorded in a second historical table.
@@ -90,7 +92,9 @@ Two tables, Inventory and Purchases, are bi-temporal. Every operation that alter
 After invoking the rest service *setup inventory* and placing some orders with /order/place Order
 ![tables ](https://github.com/iliangagliardi/inventory/blob/master/src/main/resources/static/postmanscreen1.png?raw=true)
 
+
 the database should look like the image
+
 ![tables ](https://github.com/iliangagliardi/inventory/blob/master/src/main/resources/static/dbscreen2.png?raw=true)
 
 
@@ -109,15 +113,19 @@ spring.datasource.password=<your password>
 
 Here is the maven command to download dependencies, build and run the application.
 ```
+
 ./mvnw spring-boot:run
+
 ```
 
 ## Test it
-Under src/test/resources there is the Postman collection (to import in your Postman workspace) with all the rest api calls to:
- - setup the inventory
- - place an order
- - change the state of an order
- - report and data query
+Under src/test/resources there is the Postman collection (to import in your Postman workspace) with all the REST API calls to:
+ - setup the inventory (which it has to be the first operation you do)
+ - place an order (place more than one)
+ - change the state of an order (canceled, shipped, delivered)
+ - report and data query (show the history of a product in the inventory or show the history of an order/purchase with all its states)
  
 ## Re-platform
 Rewrite the application to use MongoDB and figure out how to manage the "history" of changing data, in order to query data in a **point in time** way.
+You can eventually use Spring data/Mongo template, but notice, the secret sauce is not provided by these framework.
+Enjoy.

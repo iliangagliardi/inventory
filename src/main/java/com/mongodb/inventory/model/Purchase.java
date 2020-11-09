@@ -8,8 +8,10 @@ package com.mongodb.inventory.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,12 +20,15 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @Entity(name = "Purchase")
 @Table(name = "purchase")
-public class Purchase {
+public class Purchase implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
 
     @Column(name = "customer")
     private String customer;

@@ -69,7 +69,7 @@ public class ReportController {
         List<Purchase> purchases = new ArrayList<>();
 //        purchases = purchaseRepository.purchaseHistoryById(request.getOrder_id(), request.getFrom(), request.getTo());
 
-        purchases = (List<Purchase>) entityManager.createNativeQuery("SELECT * from purchase for system_time between :dateFrom and :dateTo where id = :id", Purchase.class)
+        purchases = (List<Purchase>) entityManager.createNativeQuery("SELECT row_number() over (order by end_time desc) as id, canceled, customer, date, delivered, shipped, start_time, end_time from purchase for system_time between :dateFrom and :dateTo where id = :id", Purchase.class)
                 .setParameter("id", request.getOrder_id())
                 .setParameter("dateFrom", request.getFrom())
                 .setParameter("dateTo", request.getTo())
