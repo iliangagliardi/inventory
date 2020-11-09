@@ -37,7 +37,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"customer\": \"John Doe\",\n    \"date\": \"2020-11-05T10:30:00\",\n    \"items\": [\n        {\n            \"product\": {\n                \"id\": 2\n            },\n            \"quantity\": 1000\n        },\n        {\n            \"product\": {\n                \"id\": 4\n            },\n            \"quantity\": 1000\n        }\n    ]\n}",
+							"raw": "{\n    \"customer\": \"John Doe III\",\n    \"date\": \"2020-11-11T10:30:00\",\n    \"items\": [\n        {\n            \"product\": {\n                \"id\": 2\n            },\n            \"quantity\": 1000\n        },\n        {\n            \"product\": {\n                \"id\": 4\n            },\n            \"quantity\": 1000\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -87,7 +87,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/orders/cancel/6",
+							"raw": "http://localhost:8080/api/orders/cancel/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -97,7 +97,7 @@
 								"api",
 								"orders",
 								"cancel",
-								"6"
+								"2"
 							]
 						}
 					},
@@ -109,7 +109,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/orders/shipped/6",
+							"raw": "http://localhost:8080/api/orders/shipped/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -119,7 +119,7 @@
 								"api",
 								"orders",
 								"shipped",
-								"6"
+								"1"
 							]
 						}
 					},
@@ -131,7 +131,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/orders/delivered/6",
+							"raw": "http://localhost:8080/api/orders/delivered/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -141,7 +141,7 @@
 								"api",
 								"orders",
 								"delivered",
-								"6"
+								"1"
 							]
 						}
 					},
@@ -163,7 +163,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"product_id\" : 2,\n    \"from\" : \"2020-11-06T12:30:00\",\n    \"to\" : \"2020-11-06T15:50:00\"\n}",
+							"raw": "{\n    \"product_id\" : 2,\n    \"from\" : \"2020-11-06T12:30:00\",\n    \"to\" : \"2020-11-12T15:50:00\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -196,7 +196,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"product_id\" : 2,\n    \"from\" : \"2020-11-06T12:30:00\",\n    \"to\" : \"2020-11-06T15:50:00\"\n}",
+							"raw": "{\n    \"order_id\" : 1,\n    \"from\" : \"2020-11-06T12:30:00\",\n    \"to\" : \"2020-11-13T20:50:00\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
