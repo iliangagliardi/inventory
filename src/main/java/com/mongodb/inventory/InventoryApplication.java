@@ -1,3 +1,9 @@
+/*
+ *
+ * Author <ilian.gagliardi@mongodb.com>
+ * Copyright (c) MongoDB 2020.
+ */
+
 package com.mongodb.inventory;
 
 import org.springframework.boot.SpringApplication;

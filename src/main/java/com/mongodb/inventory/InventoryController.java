@@ -1,3 +1,9 @@
+/*
+ *
+ * Author <ilian.gagliardi@mongodb.com>
+ * Copyright (c) MongoDB 2020.
+ */
+
 package com.mongodb.inventory;
 
 import com.mongodb.inventory.model.Inventory;
@@ -9,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +45,7 @@ public class InventoryController {
 
 
     @PostMapping("/setup")
-    public ResponseEntity<List<Inventory>> setup(@Valid @RequestBody List<Inventory> list) {
+    public ResponseEntity<List<Inventory>> setup(@RequestBody List<Inventory> list) {
         try {
             if (list != null) {
                 logger.info("received a list {}", list.size());

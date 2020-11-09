@@ -1,3 +1,9 @@
+/*
+ *
+ * Author <ilian.gagliardi@mongodb.com>
+ * Copyright (c) MongoDB 2020.
+ */
+
 package com.mongodb.inventory.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -23,6 +29,7 @@ public class Inventory {
 
     @Column(name = "startTime", insertable = false, updatable = false)
     private Date startTime;
+
     @Column(name = "endTime", insertable = false, updatable = false)
     private Date endTime;
 

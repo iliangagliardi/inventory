@@ -1,4 +1,12 @@
+/*
+ *
+ * Author <ilian.gagliardi@mongodb.com>
+ * Copyright (c) MongoDB 2020.
+ */
+
 package com.mongodb.inventory.model;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -15,6 +23,7 @@ public class PurchaseItem {
     private Long quantity;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     private Purchase purchase;
 
     @OneToOne(fetch = FetchType.LAZY)

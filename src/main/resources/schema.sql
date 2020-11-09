@@ -1,12 +1,11 @@
 
     create table inventory (
-       id int identity not null,
+       id int identity constraint Employee_pk primary key nonclustered,
         stock numeric(19,0),
         product_id numeric(19,0),
         start_time datetime2(0) GENERATED ALWAYS AS ROW START NOT NULL,
         end_time datetime2(0) GENERATED ALWAYS AS ROW END NOT NULL,
-        PERIOD FOR SYSTEM_TIME ([start_time], [end_time]),
-        primary key (id)
+        PERIOD FOR SYSTEM_TIME ([start_time], [end_time])
     ) with (SYSTEM_VERSIONING = ON (HISTORY_TABLE = [dbo].[inventory_history]));
 
     create table products (

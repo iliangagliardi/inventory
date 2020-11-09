@@ -15,7 +15,10 @@ docker run -e ‘ACCEPT_EULA=Y’
     -p 1433:1433 -d mcr.microsoft.com/mssql/server:2017-latest-ubuntu
 ```
 #### Windows
-or install it to a Windows Server/10 box
+It can be installed to a Windows Server/10 box, Microsoft lets you download developers/express version
+https://www.microsoft.com/en-us/sql-server/sql-server-downloads
+Once the db server has been installed, configure it (https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/enable-or-disable-a-server-network-protocol?view=sql-server-ver15)
+ 
 
 ### Create the database
 Create, under the default schema, a database named **inventory**.
@@ -117,4 +120,4 @@ Under src/test/resources there is the Postman collection (to import in your Post
  - report and data query
  
 ## Re-platform
-Rewrite the application to use MongoDB and figure out how to manage the "history" of changing data, in order to query data point in time.
+Rewrite the application to use MongoDB and figure out how to manage the "history" of changing data, in order to query data in a **point in time** way.

@@ -1,3 +1,9 @@
+/*
+ *
+ * Author <ilian.gagliardi@mongodb.com>
+ * Copyright (c) MongoDB 2020.
+ */
+
 package com.mongodb.inventory;
 
 import java.util.ArrayList;
@@ -21,7 +27,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
-import javax.validation.Valid;
 
 
 @CrossOrigin(origins = "http://localhost:8080")
@@ -74,7 +79,7 @@ public class PurchaseController {
 
     @Transactional(rollbackOn = ApplicationException.class)
     @PostMapping("/place")
-    public Purchase placeOrder(@Valid @RequestBody Purchase purchaseRequest) throws ApplicationException {
+    public Purchase placeOrder(@RequestBody Purchase purchaseRequest) throws ApplicationException {
         Purchase savedPurchase = null;
         Purchase init = new Purchase();
         // manipulate the object to have the official insertion date of the order
@@ -102,6 +107,7 @@ public class PurchaseController {
             i.setStock(i.getStock() - item.getQuantity());
             inventoryRepository.save(i);
         }
+        purchaseRepository.save(savedPurchase);
 
         return savedPurchase;
     }
@@ -135,5 +141,18 @@ public class PurchaseController {
         purchaseRepository.save(purchase);
         return ResponseEntity.ok("saved");
     }
+
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Purchase>> getAllOrders(@RequestParam(required = false) String name) {
+        try {
+            List<Purchase> purchases = new ArrayList<Purchase>();
+            purchases = purchaseRepository.findAll();
+            return new ResponseEntity<>(purchases, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
 }

@@ -1,11 +1,19 @@
+/*
+ *
+ * Author <ilian.gagliardi@mongodb.com>
+ * Copyright (c) MongoDB 2020.
+ */
+
 package com.mongodb.inventory.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @Entity(name = "Purchase")
@@ -57,6 +65,8 @@ public class Purchase {
         this.canceled = canceled;
     }
 
+
+    @JsonManagedReference
     @OneToMany(
             mappedBy = "purchase",
             cascade = CascadeType.ALL,
@@ -75,6 +85,7 @@ public class Purchase {
 
     public Purchase() {
     }
+
     public Purchase(Long id) {
         this.id = id;
     }
